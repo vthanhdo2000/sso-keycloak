@@ -1,13 +1,22 @@
 import { extname } from 'path';
 
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import axios from 'axios';
 import FormData from 'form-data';
 import { config } from 'src/config/config';
+import { Repository } from 'typeorm';
+
+import { FileEntity } from './entities/file.entity';
 const { api_key, link_api } = config;
 
 @Injectable()
 export class FileService {
+  constructor(
+    @InjectRepository(FileEntity)
+    private readonly fileRepository: Repository<FileEntity>,
+  ) {}
+
   async handleFileMultiUpload(files: Array<Express.Multer.File>) {
     return {
       message: 'Files uploaded successfully',

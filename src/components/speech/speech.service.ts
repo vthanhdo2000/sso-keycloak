@@ -1,17 +1,33 @@
 import { BadGatewayException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import axios from 'axios';
 import FormData from 'form-data';
 import { config } from 'src/config/config';
+import { Repository } from 'typeorm';
 
 import { TextToAudioDto } from './dto/text-to-audio.dto';
+import { SpeechEntity } from './entities/speech.entity';
+
 const { api_key, link_api } = config;
 
 @Injectable()
 export class SpeechService {
+  constructor(
+    @InjectRepository(SpeechEntity)
+    private readonly speechRepository: Repository<SpeechEntity>,
+  ) {}
+
+  async findOneSpeech(title: string) {
+    const speech = await this.speechRepository.findOne({
+      where: { title },
+    });
+
+    return speech;
+  }
+
   async convertAudio(file: Express.Multer.File, user: string): Promise<string> {
     try {
       const formData = new FormData();
-      formData.append('file', file.buffer, file.originalname);
 
       if (typeof user !== 'string') {
         throw new Error('User must be a string');

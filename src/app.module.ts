@@ -1,27 +1,32 @@
 import { BadRequestException, Module, ValidationError, ValidationPipe } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { ApplicationModule } from './components/application/application.module';
+import { AuthModule } from './components/auth/auth.module';
+import { BackofficeModule } from './components/backoffice/backoffice.module';
 import { ChatModule } from './components/chat/chat.module';
 import { ConversationModule } from './components/conversation/conversation.module';
 import { FeedbackModule } from './components/feedback/feedback.module';
+import { FileEntity } from './components/file/entities/file.entity';
 import { FileModule } from './components/file/file.module';
+import { SpeechEntity } from './components/speech/entities/speech.entity';
 import { SpeechModule } from './components/speech/speech.module';
-import { AuthModule } from './components/auth/auth.module';
 
 @Module({
   imports: [
-    // TypeOrmModule.forRoot({
-    //   type: 'postgres',
-    //   host: process.env.DB_HOST,
-    //   port: parseInt(process.env.DB_PORT, 10),
-    //   username: process.env.DB_USER,
-    //   password: process.env.DB_PASS,
-    //   database: process.env.DB_NAME,
-    //   entities: [],
-    //   synchronize: true,
-    // }),
+    //jdbc:postgresql://localhost:5432/my_database
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'admin',
+      password: 'secret',
+      database: 'my_database',
+      entities: [FileEntity, SpeechEntity],
+      synchronize: true,
+    }),
     ChatModule,
     FileModule,
     ApplicationModule,
@@ -29,6 +34,7 @@ import { AuthModule } from './components/auth/auth.module';
     FeedbackModule,
     SpeechModule,
     AuthModule,
+    BackofficeModule,
   ],
   controllers: [AppController],
   providers: [

@@ -12,6 +12,7 @@ import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { FileService } from './file.service';
 
 @Controller('files')
+// @UseGuards(AuthGuard)
 export class FileController {
   private readonly logger = new Logger(FileController.name);
 

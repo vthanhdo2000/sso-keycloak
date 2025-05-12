@@ -1,15 +1,35 @@
 version: '3.8'
+
 services:
-  app:
-    container_name: nestjs_app
-    build:
-      context: .
-      dockerfile: Dockerfile
+  postgres:
+    image: postgres:15
+    container_name: local_postgres
+    restart: unless-stopped
     ports:
-      - "3000:3000"
-    volumes:
-      - .:/app
-      - /app/node_modules
+      - "${POSTGRES_PORT}:5432"
     environment:
-      - NODE_ENV=production
-    command: npm run start
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.1
+    container_name: local_keycloak
+    restart: unless-stopped
+    command: start-dev
+    ports:
+      - "8080:8080" # không đổi theo KEYCLOAK_URL vì nó là endpoint chứ không phải port
+    environment:
+      KC_DB: postgres
+      KC_DB_URL_HOST: postgres
+      KC_DB_URL_DATABASE: ${POSTGRES_DB}
+      KC_DB_USERNAME: ${POSTGRES_USER}
+      KC_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      KEYCLOAK_ADMIN: ${KEYCLOAK_CLIENT_ID}             # sử dụng client ID làm admin user (tuỳ chỉnh)
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_CLIENT_SECRET} # dùng client secret làm pass (hoặc tạo thêm biến riêng nếu muốn tách biệt)
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:

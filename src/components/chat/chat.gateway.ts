@@ -1,7 +1,6 @@
 import { Body } from '@nestjs/common';
 import {
   ConnectedSocket,
-  MessageBody,
   SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
@@ -26,6 +25,7 @@ export class ChatGateway {
       this.server.to(client.id).emit('chatResponse', response);
 
       await this.server.emit('message', response);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       this.server.emit('error', 'Failed to process message');
     }
