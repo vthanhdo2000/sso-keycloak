@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -18,10 +18,10 @@ export class BackofficeService {
     private readonly fileRepository: Repository<FileEntity>,
   ) {}
 
-  async query() {
+  async query(): Promise<any> {
     const result = await this.speechService.findOneSpeech('Test');
     if (!result) {
-      throw new BadRequestException('Speech not found');
+      throw new NotFoundException('Speech not found');
     }
     const queryAll = await this.speechRepository.find({ relations: ['files'] });
     return { result: result, queryAll: queryAll };
