@@ -45,7 +45,7 @@ export class ConversationService {
           user,
           last_id,
           limit: limit || 20, // Default to 20 if limit is not provided
-          sort_by: sort_by || '-updated_at', // Default to '-updated_at' if sort_by is not provided
+          sort_by: sort_by || 'updated_at', // Default to '-updated_at' if sort_by is not provided
         },
         headers: {
           Authorization: `Bearer ${api_key}`,

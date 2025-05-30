@@ -1,4 +1,9 @@
-import { BadGatewayException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  BadGatewayException,
+  GatewayTimeoutException,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import axios from 'axios';
 import { config } from 'src/config/config';
 
@@ -14,6 +19,7 @@ export class ApplicationService {
         headers: {
           Authorization: `Bearer ${api_key}`,
         },
+        timeout: 10000, // 10 seconds
       });
 
       if (!response.data) {
@@ -29,6 +35,10 @@ export class ApplicationService {
       return info;
     } catch (error) {
       console.log(error);
+      // Kiểm tra nếu là lỗi từ Axios và bị timeout
+      if (axios.isAxiosError(error) && error.code === 'ECONNABORTED') {
+        throw new GatewayTimeoutException('API call timed out after 10 seconds');
+      }
       throw new InternalServerErrorException(
         'Failed to get basic information about this application',
       );

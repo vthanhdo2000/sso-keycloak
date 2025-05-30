@@ -1,5 +1,5 @@
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import { Observable, tap, catchError, throwError } from 'rxjs';
 
 @Injectable()
@@ -7,13 +7,22 @@ export class LoggingInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const now = Date.now();
     const ctx = context.switchToHttp();
-    const request = ctx.getRequest<Request>();
+    const request = ctx.getRequest();
     const response = ctx.getResponse<Response>();
 
     const { method, originalUrl } = request;
     const user = request['user']; // Đảm bảo Guard đã gán user vào request
     const userId = user?.id || 'Guest';
 
+    // Nếu đã log rồi thì bỏ qua
+    if (request.__isLogged__) {
+      return next.handle();
+    }
+
+    // Gắn cờ để không log nhiều lần
+    request.__isLogged__ = true;
+
+    console.log('ASDFASDF: ', request.__isLogged__);
     return next.handle().pipe(
       tap((data) => {
         const statusCode = response.statusCode;

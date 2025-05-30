@@ -1,4 +1,6 @@
-import { Controller, Get, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, HttpCode, Post, Res, UseInterceptors } from '@nestjs/common';
+import { Response } from 'express';
+import { Observable } from 'rxjs';
 import { SkipResponseInterceptor } from 'src/common/decorators/skip-response.decorator';
 import { LoggingInterceptor } from 'src/common/interceptors/logging.interceptor';
 
@@ -10,13 +12,22 @@ export class BackofficeController {
 
   @Get('/query')
   @SkipResponseInterceptor()
+  @UseInterceptors(LoggingInterceptor)
   async query(): Promise<any> {
-    return this.backofficeService.query();
+    return await this.backofficeService.query();
   }
 
   @Get('/all')
   @UseInterceptors(LoggingInterceptor)
   async queryAll(): Promise<any> {
-    return this.backofficeService.queryAll();
+    return await this.backofficeService.queryAll();
+  }
+
+  @Post('/test-api')
+  @SkipResponseInterceptor()
+  @UseInterceptors(LoggingInterceptor)
+  @HttpCode(200)
+  async callApi3rd(): Promise<any> {
+    return await this.backofficeService.callApi3rd();
   }
 }

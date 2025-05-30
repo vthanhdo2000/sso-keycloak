@@ -161,7 +161,8 @@ export class ChatService {
         },
       );
 
-      return { result: 'success' };
+      console.log(response.data);
+      return response;
     } catch (error) {
       console.error('Error submitting feedback:', error);
       throw new InternalServerErrorException('Failed to submit feedback');
