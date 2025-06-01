@@ -2,6 +2,7 @@ import { Body, Controller, HttpCode, Post, Query, UseGuards, UsePipes } from '@n
 import { ApiTags } from '@nestjs/swagger';
 import { Role } from 'src/common/constants/role.enum';
 import { Roles } from 'src/common/decorators/roles.decorator';
+import { CustomValidationPipe } from 'src/common/exceptions/custom-validation.pipe';
 
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';

@@ -1,0 +1,192 @@
+compare_face: {
+  imgs: {
+    img_face: 'idg20250523-29709959-20e9-4377-e063-62199f0ad79b/IDG01_aa08e6f8-378a-11f0-86e7-51c3fef7b75e',
+    img_front: 'idg20250523-29709959-20e9-4377-e063-62199f0ad79b/IDG01_2acda533-378a-11f0-b19e-8703a3b32c1e'
+  },
+  dataSign: 'IZuxOvsgvCry/lzlbn/+8RyLavqo37WDCVbHLNgqvK/iFAOY+QqKO9iF5d5o4jsnTYM5cTWxzPu+YFdQm7y9YA==',
+  dataBase64: 'eyJpbWdzIjp7ImltZ19mYWNlIjoiaWRnMjAyNTA1MjMtMjk3MDk5NTktMjBlOS00Mzc3LWUwNjMtNjIxOTlmMGFkNzliL0lERzAxX2FhMDhlNmY4LTM3OGEtMTFmMC04NmU3LTUxYzNmZWY3Yjc1ZSIsImltZ19mcm9udCI6ImlkZzIwMjUwNTIzLTI5NzA5OTU5LTIwZTktNDM3Ny1lMDYzLTYyMTk5ZjBhZDc5Yi9JREcwMV8yYWNkYTUzMy0zNzhhLTExZjAtYjE5ZS04NzAzYTNiMzJjMWUifSwibWVzc2FnZSI6IklERy0wMDAwMDAwMCIsInNlcnZlcl92ZXJzaW9uIjoiMS42LjIiLCJvYmplY3QiOnsicmVzdWx0IjoiS2h1w7RuIG3hurd0IGto4bubcCA5OC42NTAwMDAwMDAwMDAwMiUiLCJtc2ciOiJNQVRDSCIsInByb2IiOjk4LjY1MDAwMDAwMDAwMDAyLCJtYXRjaF93YXJuaW5nIjoibm8iLCJtdWx0aXBsZV9mYWNlcyI6ZmFsc2V9LCJzdGF0dXNDb2RlIjoyMDAsImNoYWxsZW5nZUNvZGUiOiIxMTExMSJ9',
+  logID: 'cd544739-37a1-11f0-bb03-a1517c5fc405-bbb6bd89-Zuulserver',
+  message: 'IDG-00000000',
+  server_version: '1.6.2',
+  object: {
+    result: 'Khuôn mặt khớp 98.65000000000002%',
+    msg: 'MATCH',
+    prob: 98.65000000000002,
+    match_warning: 'no',
+    multiple_faces: false
+  },
+  statusCode: 200,
+  challengeCode: '11111'
+}
+
+livenessFace:   object: {
+    gender: 'Nữ',
+    blur_face: 'no',
+    liveness: 'success',
+    liveness_msg: 'Người thật',
+    is_eye_open: 'yes',
+    age: 33,
+    blur_face_score: 0,
+    liveness_prob: 0.06715044558048248,
+    background_warning: 'no'
+  },
+
+mask_face: {
+  imgs: {
+    img: 'idg20250523-29709959-20e9-4377-e063-62199f0ad79b/IDG01_aa08e6f8-378a-11f0-86e7-51c3fef7b75e'
+  },
+  dataSign: 'tO/Avfk4eiLec5Lko6X/yXd4XqCT8GrUPhKZgRkNgFUtXluFO547alKBvo3+zQh3Kb/08No9/g4lIgC7Qd+N8A==',
+  dataBase64: 'eyJpbWdzIjp7ImltZyI6ImlkZzIwMjUwNTIzLTI5NzA5OTU5LTIwZTktNDM3Ny1lMDYzLTYyMTk5ZjBhZDc5Yi9JREcwMV9hYTA4ZTZmOC0zNzhhLTExZjAtODZlNy01MWMzZmVmN2I3NWUifSwibWVzc2FnZSI6IklERy0wMDAwMDAwMCIsInNlcnZlcl92ZXJzaW9uIjoiMS42LjIiLCJvYmplY3QiOnsibWFza2VkIjoieWVzIn0sInN0YXR1c0NvZGUiOjIwMCwiY2hhbGxlbmdlQ29kZSI6IjExMTExIn0=',
+  logID: '402d9cf2-37b3-11f0-9a8d-0941056b0828-20ae24b4-Zuulserver',
+  message: 'IDG-00000000',
+  server_version: '1.6.2',
+  object: { masked: 'yes' },
+  statusCode: 200,
+  challengeCode: '11111'
+}
+
+upload Img:
+{
+    "message": "IDG-00000000",
+    "object": {
+        "fileName": "4803454_Back",
+        "tokenId": "2778c975-a7b5-7447-e063-62199f0a182d",
+        "description": "123test23",
+        "storageType": "IDG01",
+        "title": "123test",
+        "uploadedDate": "5/29/25 9:58 AM",
+        "hash": "idg20250529-29709959-20e9-4377-e063-62199f0ad79b/IDG01_d6006362-3c38-11f0-86e7-3170e6668030",
+        "fileType": "jpeg"
+    },
+    "id_trans": "d0a869d6-174c-4608-acc0-c6d8529aa923"
+}
+
+Error:
+- Khi truyền thiếu fill
+{
+    "messageFields": [],
+    "messageObjects": [],
+    "message": "IDG-00000400",
+    "error": "org.springframework.web.bind.MissingServletRequestParameterException :description parameter is missing",
+    "statusCode": "400",
+    "status": "BAD_REQUEST"
+}
+
+api khác khi truyền thiếu fill
+body:
+{
+    "img_card": "idg20250527-29709959-20e9-4377-e063-62199f0ad79b/IDG01_e03fcd46-3ab3-11f0-9a4c-43b628c21131",
+}
+result:
+{
+    "messageFields": [
+        {
+            "fieldName": "client_session",
+            "message": "IDG-00000001"
+        },
+        {
+            "fieldName": "token",
+            "message": "IDG-00000001"
+        }
+    ],
+    "messageObjects": [],
+    "dataSign": "FdNgkBUDUOlsZwG6oL6zBy0QlaUCP0Xc76Iy1sf4TEfLytDHi6HZMq5eBFS++A/XRAHfG7gItfmm/+lDQg1xsw==",
+    "dataBase64": "eyJtZXNzYWdlRmllbGRzIjpbeyJmaWVsZE5hbWUiOiJjbGllbnRfc2Vzc2lvbiIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDEifSx7ImZpZWxkTmFtZSI6InRva2VuIiwibWVzc2FnZSI6IklERy0wMDAwMDAwMSJ9XSwibWVzc2FnZU9iamVjdHMiOltdLCJtZXNzYWdlIjoiIiwiZXJyb3IiOiIiLCJzdGF0dXNDb2RlIjoiNDAwIiwic3RhdHVzIjoiQkFEX1JFUVVFU1QiLCJjaGFsbGVuZ2VDb2RlIjoiMTExMTEifQ==",
+    "logID": "b78a68e9-3c40-11f0-ab03-9968ad6dc9b9-35239375-Zuulserver",
+    "message": "",
+    "error": "",
+    "statusCode": "400",
+    "status": "BAD_REQUEST",
+    "challengeCode": "11111"
+}
+
+api khach khi truyền thiếu fill
+body:
+{
+    "img_card": "idg20250527-29709959-20e9-4377-e063-62199f0ad79b/IDG01_e03fcd46-3ab3-11f0-9a4c-43b628c21131",
+    "client_session": "",
+    "token": ""
+}
+result:
+{
+    "messageFields": [
+        {
+            "fieldName": "token",
+            "message": "IDG-00000004"
+        },
+        {
+            "fieldName": "client_session",
+            "message": "IDG-00000004"
+        }
+    ],
+    "messageObjects": [],
+    "dataSign": "ByYY+V3qZ8Io0hFo8N4t37WQfOLKfjFKpWxv34J5c5es5HBij2KrP04LtCIvF3MjSuOs9ObADmZcQqXUV/97FA==",
+    "dataBase64": "eyJtZXNzYWdlRmllbGRzIjpbeyJmaWVsZE5hbWUiOiJ0b2tlbiIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDQifSx7ImZpZWxkTmFtZSI6ImNsaWVudF9zZXNzaW9uIiwibWVzc2FnZSI6IklERy0wMDAwMDAwNCJ9XSwibWVzc2FnZU9iamVjdHMiOltdLCJtZXNzYWdlIjoiIiwiZXJyb3IiOiIiLCJzdGF0dXNDb2RlIjoiNDAwIiwic3RhdHVzIjoiQkFEX1JFUVVFU1QiLCJjaGFsbGVuZ2VDb2RlIjoiMTExMTEifQ==",
+    "logID": "e6452554-3c40-11f0-9c30-add0426f0a74-5e9c4f21-Zuulserver",
+    "message": "",
+    "error": "",
+    "statusCode": "400",
+    "status": "BAD_REQUEST",
+    "challengeCode": "11111"
+}
+
+truyền vào giáy tờ không hợp lệ:
+{
+    "imgs": {
+        "img_back": "idg20250527-29709959-20e9-4377-e063-62199f0ad79b/IDG01_e03fcd46-3ab3-11f0-9a4c-43b628c21131"
+    },
+    "dataSign": "gLDjwGfRwA+naUkOahAky3qqGoNO92sBNi+IyTtgnoxHhZspNUpVYnMzRhgVgxt9kvMu3ZWaiP9f3kPOm9L2Ag==",
+    "dataBase64": "eyJpbWdzIjp7ImltZ19iYWNrIjoiaWRnMjAyNTA1MjctMjk3MDk5NTktMjBlOS00Mzc3LWUwNjMtNjIxOTlmMGFkNzliL0lERzAxX2UwM2ZjZDQ2LTNhYjMtMTFmMC05YTRjLTQzYjYyOGMyMTEzMSJ9LCJ0YW1wZXJpbmciOnsiaXNfbGVnYWwiOiJubyIsIndhcm5pbmciOlsiaW5wdXRfa2hvbmdfaG9wX2xlIl19LCJtZXNzYWdlIjoiSURHLTAwMDEwNDQ1Iiwic2VydmVyX3ZlcnNpb24iOiIxLjYuMiIsImVycm9ycyI6WyJMb+G6oWkgZ2nhuqV5IHThu50ga2jDtG5nIGjhu6NwIGzhu4ciXSwic3RhdHVzQ29kZSI6NDAwLCJzdGF0dXMiOiJCYWQgcmVxdWVzdCIsImNoYWxsZW5nZUNvZGUiOiIxMTExMSJ9",
+    "logID": "b8dd0b33-3c41-11f0-bb03-b1be98430953-7fa0bc4e-Zuulserver",
+    "tampering": {
+        "is_legal": "no",
+        "warning": [
+            "input_khong_hop_le"
+        ]
+    },
+    "message": "IDG-00010445",
+    "server_version": "1.6.2",
+    "errors": [
+        "Loại giấy tờ không hợp lệ"
+    ],
+    "statusCode": 400,
+    "status": "Bad request",
+    "challengeCode": "11111"
+}
+
+erorr-timeout
+timeout: {
+    "imgs": {
+        "img": "idg20250507-29709959-20e9-4377-e063-62199f0ad79b/IDG01_81563885-2af9-11f0-a5f9-d17c227be7b3"
+    },
+    "dataSign": "iyE1X4cDjDXdHWNDiMFqK2nwi9UW3YDAdGxKxDY21fPwvQP41TYnDSV5XuaKJVq7ml1pDlXW4OxhcGt/fC450Q==",
+    "dataBase64": "eyJpbWdzIjp7ImltZyI6ImlkZzIwMjUwNTA3LTI5NzA5OTU5LTIwZTktNDM3Ny1lMDYzLTYyMTk5ZjBhZDc5Yi9JREcwMV84MTU2Mzg4NS0yYWY5LTExZjAtYTVmOS1kMTdjMjI3YmU3YjMifSwibWVzc2FnZSI6IklERy0wMDAxMDAwNCIsInNlcnZlcl92ZXJzaW9uIjoiMS42LjIiLCJlcnJvcnMiOlsiVGltZW91dCBraGkgdGFpIGFuaCB0dSBtaW5pbyJdLCJzdGF0dXMiOiJSZXF1ZXN0IFRpbWUtb3V0Iiwic3RhdHVzQ29kZSI6NDA4LCJjaGFsbGVuZ2VDb2RlIjoiMTExMTEifQ==",
+    "logID": "511e6d7a-3b7b-11f0-8908-e11ccd160b22-40a621d9-Zuulserver",
+    "message": "IDG-00010004",
+    "server_version": "1.6.2",
+    "errors": [
+        "Timeout khi tai anh tu minio"
+    ],
+    "status": "Request Time-out",
+    "statusCode": 408,
+    "challengeCode": "11111"
+}
+
+// truyền sai định dạng img_back
+{
+    "messageFields": [
+        {
+            "fieldName": "img_back",
+            "message": "IDG-00000001"
+        }
+    ],
+    "messageObjects": [],
+    "dataSign": "trtCWKY1uYe7hQsbTm5QMP1aT+HUgYLcEaA4xI3MOG1wvTZLAJZHjHUas1MWa5UT/HHw0YvI42MpA718hsMrQg==",
+    "dataBase64": "eyJtZXNzYWdlRmllbGRzIjpbeyJmaWVsZE5hbWUiOiJpbWdfYmFjayIsIm1lc3NhZ2UiOiJJREctMDAwMDAwMDEifV0sIm1lc3NhZ2VPYmplY3RzIjpbXSwibWVzc2FnZSI6IiIsImVycm9yIjoiIiwic3RhdHVzQ29kZSI6IjQwMCIsInN0YXR1cyI6IkJBRF9SRVFVRVNUIiwiY2hhbGxlbmdlQ29kZSI6IjExMTExIn0=",
+    "logID": "77830a1e-3c4d-11f0-a369-9b8217f49412-ee05f106-Zuulserver",
+    "message": "",
+    "error": "",
+    "statusCode": "400",
+    "status": "BAD_REQUEST",
+    "challengeCode": "11111"
+}

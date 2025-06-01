@@ -1,12 +1,12 @@
-import { Logger, ValidationPipe } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { WsAdapter } from '@nestjs/platform-ws';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import helmet from 'helmet';
 
 import { AppModule } from './app.module';
-import { CustomValidationExceptionFilter } from './common/exceptions/custom-validation-exception.filter';
-import { CustomValidationPipe } from './common/exceptions/custom-validation-pipe.filter';
+import { AllExceptionFilter } from './common/exceptions/all-exception.filter';
+import { CustomValidationPipe } from './common/exceptions/custom-validation.pipe';
 import { HttpExceptionFilter } from './common/exceptions/http-exception.filter';
 import { ResponseInterceptor } from './common/interceptors/response.interceptor';
 import { config } from './config/config';
@@ -34,14 +34,8 @@ async function bootstrap() {
   // app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   app.useWebSocketAdapter(new WsAdapter(app));
   // app.useGlobalFilters(new HttpExceptionFilter());
-  app.useGlobalFilters(new CustomValidationExceptionFilter());
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      transform: true,
-      forbidNonWhitelisted: true,
-    }),
-  );
+  app.useGlobalPipes(new CustomValidationPipe());
+  app.useGlobalFilters(new AllExceptionFilter());
 
   app.useGlobalInterceptors(new ResponseInterceptor(reflector));
 

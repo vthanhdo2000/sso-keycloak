@@ -1,0 +1,35 @@
+{
+	"imgs": {
+		"img_back": "idg20250527-29709959-20e9-4377-e063-62199f0ad79b/IDG01_e03fcd46-3ab3-11f0-9a4c-43b628c21131"
+	    },
+	    "tampering": {
+        "is_legal": "no",
+        "warning": [
+            "input_khong_hop_le"
+        ]
+    },
+    "messageFields": [
+        {
+            "fieldName": "img_back",
+            "message": "IDG-00000001"
+        }
+    ],
+    "messageObjects": [],
+    "message": "IDG-0000004",
+    "error": [
+        "Loại giấy tờ không hợp lệ"
+    ],
+    "statusCode": "400",
+    "status": "BAD_REQUEST",
+}
+{
+"messageFields": [],
+    "messageObjects": [],
+    "message": "IDG-0000004",
+    "error": [
+        "data user not found"
+    ],
+    "statusCode": 400,
+    "status": "BAD_REQUEST",
+}
+
