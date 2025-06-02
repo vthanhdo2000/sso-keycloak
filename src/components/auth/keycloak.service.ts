@@ -1,7 +1,7 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
-import { BaseExceptionFilter } from 'src/common/exceptions/base-exception.filter';
+import { CustomException } from 'src/common/exceptions/base-exception.filter';
 import { mapStatus } from 'src/common/utils/map-statuscode';
 
 @Injectable()
@@ -21,9 +21,20 @@ export class KeycloakService {
       //   });
       // }
       if (url) {
-        throw new BaseExceptionFilter('AI-UNKNOWN-ERROR', ['Lỗi không xác định'], 409, {
+        // throw new BaseExceptionFilter({'AI-UNKNOWN-ERROR', ['Lỗi không xác định'], 409,
+        //   imgs: { img_front: 'url1' },
+        //   tampering: { is_legal: 'no' },
+        // });
+        console.log('vao day');
+        throw new CustomException({
+          message: 'AI-UNKNOWN-ERROR' as string,
+          error: ['Lỗi không xác định'],
+          statusCode: 409,
           imgs: { img_front: 'url1' },
           tampering: { is_legal: 'no' },
+          status: 'CONFLICT',
+          // có thể thêm field động:
+          extra_info: { step: 'validation', timestamp: Date.now() },
         });
       }
       const params = new URLSearchParams();

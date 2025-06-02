@@ -1,8 +1,7 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
 import { Response } from 'express';
 
-import { BaseExceptionFilter } from './base-exception.filter';
-import { mapStatus } from '../utils/map-statuscode';
+import { CustomException } from './base-exception.filter';
 
 @Catch()
 export class AllExceptionFilter implements ExceptionFilter {
@@ -13,7 +12,9 @@ export class AllExceptionFilter implements ExceptionFilter {
     let statusCode: number;
     let errorResponse: any;
 
-    if (exception instanceof BaseExceptionFilter) {
+  console.log('exception: ', exception);
+  
+    if (exception instanceof CustomException) {
       console.log('start custom BaseExceptionFilter');
       const res = exception.getResponse() as any;
       statusCode = exception.getStatus();
@@ -26,7 +27,6 @@ export class AllExceptionFilter implements ExceptionFilter {
       // Các lỗi chuẩn HttpException (BadRequest, NotFound, Conflict...)
       statusCode = exception.getStatus();
       const res: any = exception.getResponse();
-
       console.log(res);
       if ('messageFields' in res && Array.isArray(res.messageFields)) {
         errorResponse = {
